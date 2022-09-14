@@ -73,6 +73,7 @@ export interface TreeProps {
     onUpdate?: (target: {
         node: TreeNodeDatum | null;
         zoom: number;
+        translate: Point;
     }) => any;
     /**
      * Determines along which axis the tree is oriented.

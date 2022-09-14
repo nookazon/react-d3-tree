@@ -97,7 +97,7 @@ export interface TreeProps {
    *
    * {@link Tree.defaultProps.onUpdate | Default value}
    */
-  onUpdate?: (target: { node: TreeNodeDatum | null; zoom: number }) => any;
+  onUpdate?: (target: { node: TreeNodeDatum | null; zoom: number; translate: Point }) => any;
 
   /**
    * Determines along which axis the tree is oriented.
