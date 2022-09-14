@@ -3,6 +3,7 @@ interface TransitionGroupWrapperProps {
     enableLegacyTransitions: boolean;
     component: string;
     className: string;
+    transform: string;
     children: React.ReactNode;
 }
 declare const TransitionGroupWrapper: (props: TransitionGroupWrapperProps) => JSX.Element;

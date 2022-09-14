@@ -528,7 +528,7 @@ class Tree extends React.Component<TreeProps, TreeState> {
             enableLegacyTransitions={enableLegacyTransitions}
             component="g"
             className={`rd3t-g ${this.gInstanceRef}`}
-            // transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
+            transform={`translate(${translate.x},${translate.y}) scale(${scale})`}
           >
             {links.map((linkData, i) => {
               return (
