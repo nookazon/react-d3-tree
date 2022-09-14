@@ -90,7 +90,7 @@ class Tree extends React.Component<TreeProps, TreeState> {
   }
 
   componentDidMount() {
-    this.bindZoomListener(this.props);
+    // this.bindZoomListener(this.props);
     this.setState({ isInitialRenderForDataset: false });
   }
 
@@ -100,17 +100,17 @@ class Tree extends React.Component<TreeProps, TreeState> {
       this.setState({ isInitialRenderForDataset: false });
     }
 
-    if (
-      !deepEqual(this.props.translate, prevProps.translate) ||
-      !deepEqual(this.props.scaleExtent, prevProps.scaleExtent) ||
-      this.props.zoomable !== prevProps.zoomable ||
-      this.props.zoom !== prevProps.zoom ||
-      this.props.enableLegacyTransitions !== prevProps.enableLegacyTransitions
-    ) {
-      // If zoom-specific props change -> rebind listener with new values.
-      // Or: rebind zoom listeners to new DOM nodes in case legacy transitions were enabled/disabled.
-      this.bindZoomListener(this.props);
-    }
+    // if (
+    //   !deepEqual(this.props.translate, prevProps.translate) ||
+    //   !deepEqual(this.props.scaleExtent, prevProps.scaleExtent) ||
+    //   this.props.zoomable !== prevProps.zoomable ||
+    //   this.props.zoom !== prevProps.zoom ||
+    //   this.props.enableLegacyTransitions !== prevProps.enableLegacyTransitions
+    // ) {
+    //   // If zoom-specific props change -> rebind listener with new values.
+    //   // Or: rebind zoom listeners to new DOM nodes in case legacy transitions were enabled/disabled.
+    //   this.bindZoomListener(this.props);
+    // }
 
     if (typeof this.props.onUpdate === 'function') {
       this.props.onUpdate({
@@ -140,48 +140,48 @@ class Tree extends React.Component<TreeProps, TreeState> {
    * "zoom" events to the SVG and sets scaleExtent to min/max
    * specified in `props.scaleExtent`.
    */
-  bindZoomListener(props: TreeProps) {
-    const { zoomable, scaleExtent, translate, zoom, onUpdate, hasInteractiveNodes } = props;
-    const svg = select(`.${this.svgInstanceRef}`);
-    const g = select(`.${this.gInstanceRef}`);
+  // bindZoomListener(props: TreeProps) {
+  //   const { zoomable, scaleExtent, translate, zoom, onUpdate, hasInteractiveNodes } = props;
+  //   const svg = select(`.${this.svgInstanceRef}`);
+  //   const g = select(`.${this.gInstanceRef}`);
 
-    // Sets initial offset, so that first pan and zoom does not jump back to default [0,0] coords.
-    // @ts-ignore
-    svg.call(d3zoom().transform, zoomIdentity.translate(translate.x, translate.y).scale(zoom));
-    svg.call(
-      d3zoom()
-        .scaleExtent(zoomable ? [scaleExtent.min, scaleExtent.max] : [zoom, zoom])
-        // TODO: break this out into a separate zoom handler fn, rather than inlining it.
-        .filter(() => {
-          if (hasInteractiveNodes)
-            return (
-              event.target.classList.contains(this.svgInstanceRef) ||
-              event.target.classList.contains(this.gInstanceRef) ||
-              event.shiftKey
-            );
-          return true;
-        })
-        .on('zoom', () => {
-          g.attr('transform', event.transform);
-          if (typeof onUpdate === 'function') {
-            // This callback is magically called not only on "zoom", but on "drag", as well,
-            // even though event.type == "zoom".
-            // Taking advantage of this and not writing a "drag" handler.
-            onUpdate({
-              node: null,
-              zoom: event.transform.k,
-              translate: { x: event.transform.x, y: event.transform.y },
-            });
-            // TODO: remove this? Shouldn't be mutating state keys directly.
-            this.state.d3.scale = event.transform.k;
-            this.state.d3.translate = {
-              x: event.transform.x,
-              y: event.transform.y,
-            };
-          }
-        })
-    );
-  }
+  //   // Sets initial offset, so that first pan and zoom does not jump back to default [0,0] coords.
+  //   // @ts-ignore
+  //   svg.call(d3zoom().transform, zoomIdentity.translate(translate.x, translate.y).scale(zoom));
+  //   svg.call(
+  //     d3zoom()
+  //       .scaleExtent(zoomable ? [scaleExtent.min, scaleExtent.max] : [zoom, zoom])
+  //       // TODO: break this out into a separate zoom handler fn, rather than inlining it.
+  //       .filter(() => {
+  //         if (hasInteractiveNodes)
+  //           return (
+  //             event.target.classList.contains(this.svgInstanceRef) ||
+  //             event.target.classList.contains(this.gInstanceRef) ||
+  //             event.shiftKey
+  //           );
+  //         return true;
+  //       })
+  //       .on('zoom', () => {
+  //         g.attr('transform', event.transform);
+  //         if (typeof onUpdate === 'function') {
+  //           // This callback is magically called not only on "zoom", but on "drag", as well,
+  //           // even though event.type == "zoom".
+  //           // Taking advantage of this and not writing a "drag" handler.
+  //           onUpdate({
+  //             node: null,
+  //             zoom: event.transform.k,
+  //             translate: { x: event.transform.x, y: event.transform.y },
+  //           });
+  //           // TODO: remove this? Shouldn't be mutating state keys directly.
+  //           this.state.d3.scale = event.transform.k;
+  //           this.state.d3.translate = {
+  //             x: event.transform.x,
+  //             y: event.transform.y,
+  //           };
+  //         }
+  //       })
+  //   );
+  // }
 
   /**
    * Assigns internal properties that are required for tree

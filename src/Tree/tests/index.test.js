@@ -15,7 +15,7 @@ describe('<Tree />', () => {
   jest.spyOn(Tree, 'collapseNode');
   jest.spyOn(Tree, 'expandNode');
   jest.spyOn(Tree.prototype, 'setInitialTreeDepth');
-  jest.spyOn(Tree.prototype, 'bindZoomListener');
+  // jest.spyOn(Tree.prototype, 'bindZoomListener');
   jest.spyOn(Tree.prototype, 'collapseNeighborNodes');
 
   // Clear method spies on prototype after each test
@@ -301,26 +301,26 @@ describe('<Tree />', () => {
       );
     });
 
-    it('rebinds zoom handler on zoom-related props update', () => {
-      const zoomProps = [
-        { translate: { x: 1, y: 1 } },
-        { scaleExtent: { min: 0.3, max: 0.4 } },
-        { zoom: 3.1415 },
-      ];
-      const renderedComponent = mount(<Tree data={mockData} />);
+    // it('rebinds zoom handler on zoom-related props update', () => {
+    //   const zoomProps = [
+    //     { translate: { x: 1, y: 1 } },
+    //     { scaleExtent: { min: 0.3, max: 0.4 } },
+    //     { zoom: 3.1415 },
+    //   ];
+    //   const renderedComponent = mount(<Tree data={mockData} />);
 
-      expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(1);
+    //   expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(1);
 
-      zoomProps.forEach(nextProps => renderedComponent.setProps(nextProps));
-      expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(4);
-    });
+    //   zoomProps.forEach(nextProps => renderedComponent.setProps(nextProps));
+    //   expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(4);
+    // });
 
-    it('rebinds on `props.enableLegacyTransitions` change to handle switched DOM nodes from TransitionGroupWrapper', () => {
-      const renderedComponent = mount(<Tree data={mockData} />);
-      expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(1);
-      renderedComponent.setProps({ enableLegacyTransitions: true });
-      expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(2);
-    });
+    // it('rebinds on `props.enableLegacyTransitions` change to handle switched DOM nodes from TransitionGroupWrapper', () => {
+    //   const renderedComponent = mount(<Tree data={mockData} />);
+    //   expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(1);
+    //   renderedComponent.setProps({ enableLegacyTransitions: true });
+    //   expect(renderedComponent.instance().bindZoomListener).toHaveBeenCalledTimes(2);
+    // });
   });
 
   describe('Event handlers', () => {

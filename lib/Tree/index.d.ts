@@ -33,7 +33,6 @@ declare class Tree extends React.Component<TreeProps, TreeState> {
      * "zoom" events to the SVG and sets scaleExtent to min/max
      * specified in `props.scaleExtent`.
      */
-    bindZoomListener(props: TreeProps): void;
     /**
      * Assigns internal properties that are required for tree
      * manipulation to each node in the `data` set and returns a new `data` array.
