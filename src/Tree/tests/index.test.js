@@ -164,48 +164,48 @@ describe('<Tree />', () => {
       expect(Tree.collapseNode).toHaveBeenCalledTimes(0);
     });
 
-    describe('with `props.enableLegacyTransitions`', () => {
-      it('does not toggle any nodes again until `transitionDuration` has completed', () => {
-        const renderedComponent = mount(<Tree data={mockData} enableLegacyTransitions />);
-        const nodeCount = renderedComponent.find(Node).length;
-        renderedComponent
-          .find(Node)
-          .first()
-          .find('circle')
-          .simulate('click');
+    // describe('with `props.enableLegacyTransitions`', () => {
+    //   it('does not toggle any nodes again until `transitionDuration` has completed', () => {
+    //     const renderedComponent = mount(<Tree data={mockData} enableLegacyTransitions />);
+    //     const nodeCount = renderedComponent.find(Node).length;
+    //     renderedComponent
+    //       .find(Node)
+    //       .first()
+    //       .find('circle')
+    //       .simulate('click');
 
-        renderedComponent
-          .find(Node)
-          .first()
-          .find('circle')
-          .simulate('click');
+    //     renderedComponent
+    //       .find(Node)
+    //       .first()
+    //       .find('circle')
+    //       .simulate('click');
 
-        expect(Tree.collapseNode).toHaveBeenCalledTimes(nodeCount);
-        expect(Tree.expandNode).not.toHaveBeenCalled();
-      });
+    //     expect(Tree.collapseNode).toHaveBeenCalledTimes(nodeCount);
+    //     expect(Tree.expandNode).not.toHaveBeenCalled();
+    //   });
 
-      it('allows toggling nodes again after `transitionDuration` + 10ms has expired', () => {
-        jest.useFakeTimers();
-        const renderedComponent = mount(<Tree data={mockData} enableLegacyTransitions />);
-        const nodeCount = renderedComponent.find(Node).length;
-        renderedComponent
-          .find(Node)
-          .first()
-          .find('circle')
-          .simulate('click');
+    //   it('allows toggling nodes again after `transitionDuration` + 10ms has expired', () => {
+    //     jest.useFakeTimers();
+    //     const renderedComponent = mount(<Tree data={mockData} enableLegacyTransitions />);
+    //     const nodeCount = renderedComponent.find(Node).length;
+    //     renderedComponent
+    //       .find(Node)
+    //       .first()
+    //       .find('circle')
+    //       .simulate('click');
 
-        jest.runAllTimers();
+    //     jest.runAllTimers();
 
-        renderedComponent
-          .find(Node)
-          .first()
-          .find('circle')
-          .simulate('click');
+    //     renderedComponent
+    //       .find(Node)
+    //       .first()
+    //       .find('circle')
+    //       .simulate('click');
 
-        expect(Tree.collapseNode).toHaveBeenCalledTimes(nodeCount);
-        expect(Tree.expandNode).toHaveBeenCalledTimes(1);
-      });
-    });
+    //     expect(Tree.collapseNode).toHaveBeenCalledTimes(nodeCount);
+    //     expect(Tree.expandNode).toHaveBeenCalledTimes(1);
+    //   });
+    // });
   });
 
   describe('shouldCollapseNeighborNodes', () => {

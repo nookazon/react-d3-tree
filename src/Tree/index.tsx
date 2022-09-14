@@ -391,34 +391,34 @@ class Tree extends React.Component<TreeProps, TreeState> {
    * This code is adapted from Rob Schmuecker's centerNode method.
    * Link: http://bl.ocks.org/robschmuecker/7880033
    */
-  centerNode = (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => {
-    const { dimensions, orientation, zoom, centeringTransitionDuration } = this.props;
-    if (dimensions) {
-      const g = select(`.${this.gInstanceRef}`);
-      const svg = select(`.${this.svgInstanceRef}`);
-      const scale = this.state.d3.scale;
+  // centerNode = (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => {
+  //   const { dimensions, orientation, zoom, centeringTransitionDuration } = this.props;
+  //   if (dimensions) {
+  //     const g = select(`.${this.gInstanceRef}`);
+  //     const svg = select(`.${this.svgInstanceRef}`);
+  //     const scale = this.state.d3.scale;
 
-      let x: number;
-      let y: number;
-      // if the orientation is horizontal, calculate the variables inverted (x->y, y->x)
-      if (orientation === 'horizontal') {
-        y = -hierarchyPointNode.x * scale + dimensions.height / 2;
-        x = -hierarchyPointNode.y * scale + dimensions.width / 2;
-      } else {
-        // else, calculate the variables normally (x->x, y->y)
-        x = -hierarchyPointNode.x * scale + dimensions.width / 2;
-        y = -hierarchyPointNode.y * scale + dimensions.height / 2;
-      }
-      //@ts-ignore
-      g.transition()
-        .duration(centeringTransitionDuration)
-        .attr('transform', 'translate(' + x + ',' + y + ')scale(' + scale + ')');
-      // Sets the viewport to the new center so that it does not jump back to original
-      // coordinates when dragged/zoomed
-      //@ts-ignore
-      svg.call(d3zoom().transform, zoomIdentity.translate(x, y).scale(zoom));
-    }
-  };
+  //     let x: number;
+  //     let y: number;
+  //     // if the orientation is horizontal, calculate the variables inverted (x->y, y->x)
+  //     if (orientation === 'horizontal') {
+  //       y = -hierarchyPointNode.x * scale + dimensions.height / 2;
+  //       x = -hierarchyPointNode.y * scale + dimensions.width / 2;
+  //     } else {
+  //       // else, calculate the variables normally (x->x, y->y)
+  //       x = -hierarchyPointNode.x * scale + dimensions.width / 2;
+  //       y = -hierarchyPointNode.y * scale + dimensions.height / 2;
+  //     }
+  //     //@ts-ignore
+  //     g.transition()
+  //       .duration(centeringTransitionDuration)
+  //       .attr('transform', 'translate(' + x + ',' + y + ')scale(' + scale + ')');
+  //     // Sets the viewport to the new center so that it does not jump back to original
+  //     // coordinates when dragged/zoomed
+  //     //@ts-ignore
+  //     svg.call(d3zoom().transform, zoomIdentity.translate(x, y).scale(zoom));
+  //   }
+  // };
 
   /**
    * Generates tree elements (`nodes` and `links`) by
@@ -567,7 +567,7 @@ class Tree extends React.Component<TreeProps, TreeState> {
                   onNodeMouseOver={this.handleOnNodeMouseOverCb}
                   onNodeMouseOut={this.handleOnNodeMouseOutCb}
                   subscriptions={subscriptions}
-                  centerNode={this.centerNode}
+                  // centerNode={this.centerNode}
                 />
               );
             })}

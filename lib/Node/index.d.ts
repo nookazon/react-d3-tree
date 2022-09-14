@@ -21,7 +21,6 @@ declare type NodeProps = {
     onNodeMouseOver: NodeEventHandler;
     onNodeMouseOut: NodeEventHandler;
     subscriptions: object;
-    centerNode: (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => void;
 };
 declare type NodeState = {
     transform: string;
