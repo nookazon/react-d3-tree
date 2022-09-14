@@ -116,7 +116,7 @@ class Tree extends React.Component<TreeProps, TreeState> {
       this.props.onUpdate({
         node: this.internalState.targetNode ? clone(this.internalState.targetNode) : null,
         zoom: this.state.d3.scale,
-        translate: this.state.d3.translate,
+        // translate: this.state.d3.translate,
       });
     }
     // Reset the last target node after we've flushed it to `onUpdate`.
