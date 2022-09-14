@@ -29,7 +29,7 @@ type NodeProps = {
   onNodeMouseOver: NodeEventHandler;
   onNodeMouseOut: NodeEventHandler;
   subscriptions: object;
-  // centerNode: (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => void;
+  centerNode: (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => void;
 };
 
 type NodeState = {
@@ -60,7 +60,7 @@ export default class Node extends React.Component<NodeProps, NodeState> {
 
   componentDidUpdate() {
     if (this.state.wasClicked) {
-      // this.props.centerNode(this.props.hierarchyPointNode);
+      this.props.centerNode(this.props.hierarchyPointNode);
       this.setState({ wasClicked: false });
     }
     this.commitTransform();

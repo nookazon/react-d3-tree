@@ -109,6 +109,7 @@ declare class Tree extends React.Component<TreeProps, TreeState> {
      * This code is adapted from Rob Schmuecker's centerNode method.
      * Link: http://bl.ocks.org/robschmuecker/7880033
      */
+    centerNode: (hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>) => void;
     /**
      * Generates tree elements (`nodes` and `links`) by
      * grabbing the rootNode from `this.state.data[0]`.
