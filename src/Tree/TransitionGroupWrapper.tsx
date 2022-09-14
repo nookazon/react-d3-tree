@@ -5,7 +5,7 @@ interface TransitionGroupWrapperProps {
   enableLegacyTransitions: boolean;
   component: string;
   className: string;
-  transform: string;
+  // transform: string;
   children: React.ReactNode;
 }
 
@@ -14,14 +14,12 @@ const TransitionGroupWrapper = (props: TransitionGroupWrapperProps) =>
     <TransitionGroup
       component={props.component}
       className={props.className}
-      transform={props.transform}
+      // transform={props.transform}
     >
       {props.children}
     </TransitionGroup>
   ) : (
-    <g className={props.className} transform={props.transform}>
-      {props.children}
-    </g>
+    <g className={props.className}>{props.children}</g>
   );
 
 export default TransitionGroupWrapper;
