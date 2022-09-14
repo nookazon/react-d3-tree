@@ -517,7 +517,7 @@ class Tree extends React.Component<TreeProps, TreeState> {
     };
 
     return (
-      <div className="rd3t-tree-container rd3t-grabbable">
+      <div className="rd3t-tree-container">
         <style>{globalCss}</style>
         <svg
           className={`rd3t-svg ${this.svgInstanceRef} ${svgClassName}`}

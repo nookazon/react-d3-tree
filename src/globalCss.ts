@@ -12,18 +12,6 @@ export default `
   height: 100%;
 }
 
-.rd3t-grabbable {
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
-.rd3t-grabbable:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-}
-
 /* Node */
 .rd3t-node {
   cursor: pointer;
